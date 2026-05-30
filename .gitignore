@@ -37,6 +37,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -48,6 +49,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.vsconfig
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -73,3 +75,22 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# =========================================================================
+# Customizações Extras para o Projeto (Unity 6 / IDEs / Plugins)
+# =========================================================================
+
+# Arquivos temporários do Sistema Operacional
+[Dd]umb.db
+.DS_Store
+*.blur
+
+# Ignorar o diretório do DOTween/Plugins para evitar poluição no Git
+/[Aa]ssets/[Pp]lugins/
+
+# Pastas de configuração pessoal de outras IDEs (Rider e VS Code)
+.idea/
+.vscode/
+
+# Arquivos locais do Unity VCS (PlasticSCM)
+.plastic/
