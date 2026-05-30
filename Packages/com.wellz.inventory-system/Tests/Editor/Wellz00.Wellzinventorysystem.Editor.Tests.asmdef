@@ -1,0 +1,14 @@
+{
+    "name": "Wellz00.Wellzinventorysystem.Editor.Tests",
+    "references": [
+        "Wellz00.Wellzinventorysystem.Editor",
+        "Wellz00.Wellzinventorysystem"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

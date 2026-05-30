@@ -1,0 +1,11 @@
+{
+    "name": "Wellz00.Wellzinventorysystem.Tests",
+    "references": [
+        "Wellz00.Wellzinventorysystem"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
