@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class InventoryView : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+namespace Wellz.Inventory.Core.Views {
+    public class InventoryView : MonoBehaviour {
+        // Campos estáticos e constantes
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Campos expostos no Inspector
+
+        // Propriedades para acesso controlado externo
+
+        // Campos privados para o estado interno da classe
+
+        #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
+        #endregion
+
+        #region Métodos públicos e privados da lógica da classe
+        #endregion
     }
 }

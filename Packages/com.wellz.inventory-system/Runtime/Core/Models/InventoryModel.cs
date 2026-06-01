@@ -1,16 +1,22 @@
+using System;
 using UnityEngine;
+using Wellz.Inventory.Core.Controllers;
+using Wellz.Utils.Core;
 
-public class InventoryModel : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+namespace Wellz.Inventory.Core.Models {
+    public class InventoryModel {
+        // Campos estáticos e constantes
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Campos privados para o estado interno da classe
+        private GenericGrid<SlotController>
+
+        // Propriedades para acesso controlado externo
+
+        // Construtores
+        public InventoryModel() {
+        }
+
+        #region Métodos públicos e privados da lógica da classe
+        #endregion
     }
 }

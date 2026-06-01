@@ -1,7 +1,7 @@
 using UnityEngine;
 
-namespace Wellz.Inventory.Core.Controllers {
-    public class InventoryController : MonoBehaviour {
+namespace Wellz.Inventory.Core.Views {
+    public class SlotView : MonoBehaviour {
         // Campos estáticos e constantes
 
         // Campos expostos no Inspector
