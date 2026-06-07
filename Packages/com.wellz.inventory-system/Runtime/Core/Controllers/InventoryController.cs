@@ -1,4 +1,8 @@
 using UnityEngine;
+using Wellz.Inventory.Core.Interfaces;
+using Wellz.Inventory.Core.Models;
+using Wellz.Inventory.Core.Views;
+using Wellz.Inventory.Items;
 
 namespace Wellz.Inventory.Core.Controllers {
     public class InventoryController : MonoBehaviour {
