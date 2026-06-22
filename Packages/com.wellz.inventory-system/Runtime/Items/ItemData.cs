@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Wellz.Inventory.Items {
@@ -26,11 +27,11 @@ namespace Wellz.Inventory.Items {
 
         [ContextMenu("Generate Item ID")]
         private void GenerateId() {
-            ItemId = System.Guid.NewGuid().ToString("N")[..8].ToUpper();
+            ItemId = Guid.NewGuid().ToString();
 
-            #if UNITY_EDITOR
-                UnityEditor.EditorUtility.SetDirty(this);
-            #endif
+#if UNITY_EDITOR
+            UnityEditor.EditorUtility.SetDirty(this);
+#endif
         }
 
         private void OnValidate() {

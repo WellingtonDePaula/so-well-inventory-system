@@ -22,18 +22,22 @@ namespace Wellz.Inventory.Core.Controllers {
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
 
+        private void Awake() {
+            view = GetComponent<ISlotView>();
+        }
+
         #endregion
 
         #region Métodos públicos e privados da lógica da classe
         public int AddItem(ItemData item, int quantity = 1) {
             int remainder = model.AddItem(item, quantity);
-            view.RefreshView(model.Quantity);
+            view.RefreshView(model.Item, model.Quantity);
             return remainder;
         }
 
         public int RemoveItem(ItemData item, int quantity = 1) {
             int remainder = model.RemoveItem(item, quantity);
-            view.RefreshView(model.Quantity);
+            view.RefreshView(model.Item, model.Quantity);
             return remainder;
         }
 

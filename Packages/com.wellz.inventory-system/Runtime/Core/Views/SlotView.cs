@@ -26,8 +26,14 @@ namespace Wellz.Inventory.Core.Views {
             throw new System.NotImplementedException();
         }
 
-        public void RefreshView(int quantity) {
-            throw new System.NotImplementedException();
+        public void RefreshView(ItemData data, int quantity) {
+            if(itemData != data) {
+                SetupView(data, quantity);
+                return;
+            }
+            if (itemData == null) { return; }
+
+            quantityText.text = quantity.ToString();
         }
 
         public void SwapItem(ItemData data, int quantity) {
@@ -35,7 +41,15 @@ namespace Wellz.Inventory.Core.Views {
         }
 
         public void SetupView(ItemData data, int quantity) {
-            throw new System.NotImplementedException();
+            if (data == null) {
+                itemData = null;
+                iconImage.sprite = null;
+                quantityText.text = "";
+                return;
+            }
+            itemData = data;
+            iconImage.sprite = data.Icon;
+            quantityText.text = quantity.ToString();
         }
         #endregion
     }

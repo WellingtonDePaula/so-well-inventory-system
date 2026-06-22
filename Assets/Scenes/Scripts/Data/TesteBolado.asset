@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca2c3961b4bce5439a5f532318f444f, type: 3}
+  m_Name: TesteBolado
+  m_EditorClassIdentifier: Wellz.Inventory.Runtime::Wellz.Inventory.Items.ItemData
+  ItemId: 2d4aa1a5-7f30-48f9-8d2d-91e7d785ca05
+  DisplayName: TesteBolado
+  Description: arthur vendo bola bolastica
+  Icon: {fileID: -2548187904757789788, guid: c32c792b029db0049b7631fcd0af13d0, type: 3}
+  Price: 0
+  IsStackable: 0
+  MaxStackSize: 1
+  IsPermanentSlot: 0

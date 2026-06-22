@@ -13,38 +13,24 @@ namespace Wellz.Inventory.Core.Models {
 
         // Propriedades para acesso controlado externo
         public ItemData Item => item;
+        public event Action<int> OnQuantityChanged;
 
         public int Quantity => quantity;
 
-        // Construtores
+        // Construtor
         public SlotModel(ItemData item, int quantity) {
+            if (!item.IsPermanentSlot && quantity == 0) {
+                Debug.LogWarning("ItemData passed does not support permanent slot! Ignoring data.");
+                return;
+            }
             this.item = item;
             this.quantity = quantity;
-        }
-        public SlotModel(ItemData item) {
-            this.item = item;
-            this.quantity = 0;
+
+            OnQuantityChanged += ValidateQuantity;
         }
 
         #region Métodos públicos e privados da lógica da classe
         #endregion
-
-        //public bool SwapSlot(SlotModel slot) {
-        //    if (slot == null) {
-        //        return false;
-        //    }
-        //    if (ReferenceEquals(this, slot)) {
-        //        return false;
-        //    }
-
-        //    Vector2Int tempPos = this.gridPos;
-
-        //    this.gridPos = slot.gridPos;
-
-        //    slot.gridPos = tempPos;
-
-        //    return true;
-        //}
 
         public bool SwapItem(ItemData item) {
             if (this.item != null) { return false; }
@@ -65,10 +51,16 @@ namespace Wellz.Inventory.Core.Models {
 
                 if (addQuantity <= remainingSpace) {
                     this.quantity += addQuantity;
+
+                    OnQuantityChanged?.Invoke(this.quantity);
+
                     return 0;
                 } else {
                     this.quantity = this.item.MaxStackSize;
                     int leftover = addQuantity - remainingSpace;
+
+                    OnQuantityChanged?.Invoke(this.quantity);
+
                     return leftover;
                 }
             }
@@ -83,6 +75,7 @@ namespace Wellz.Inventory.Core.Models {
             if (!this.item.IsStackable) {
                 this.item = null;
                 this.quantity = 0;
+                OnQuantityChanged?.Invoke(this.quantity);
                 return 1;
             }
 
@@ -90,14 +83,26 @@ namespace Wellz.Inventory.Core.Models {
 
             if (difference > 0) {
                 this.quantity = difference;
+                OnQuantityChanged?.Invoke(this.quantity);
                 return removeQuantity;
             } else {
                 int removedAmount = this.quantity;
 
                 this.item = null;
                 this.quantity = 0;
+                OnQuantityChanged?.Invoke(this.quantity);
 
                 return removedAmount;
+            }
+        }
+
+        private void ValidateQuantity(int value) {
+            if (quantity <= 0 && item != null) {
+                quantity = 0;
+                if (item.IsPermanentSlot) {
+                    return;
+                }
+                item = null;
             }
         }
     }
