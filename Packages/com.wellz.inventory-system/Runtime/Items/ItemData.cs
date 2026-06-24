@@ -35,10 +35,15 @@ namespace Wellz.Inventory.Items {
         }
 
         private void OnValidate() {
-            if (string.IsNullOrEmpty(ItemId))
+            if (string.IsNullOrEmpty(ItemId)) {
                 GenerateId();
-            if (!IsStackable)
+            }
+            if (IsPermanentSlot) {
+                IsStackable = true;
+            }
+            if (!IsStackable) {
                 MaxStackSize = 1;
+            }
         }
 
         #endregion

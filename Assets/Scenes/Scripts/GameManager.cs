@@ -9,13 +9,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Slider slider;
     [SerializeField] private Text response;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() {
+    public static GameManager Instance;
 
-    }
-
-    // Update is called once per frame
-    void Update() {
+    private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(gameObject);
+        }
     }
 
     public void SetupController() {
@@ -36,5 +37,7 @@ public class GameManager : MonoBehaviour {
         response.text = $"{remainder} removidos; {slider.value - remainder} restantes.";
     }
 
+    public void SwapItem() {
 
+    }
 }

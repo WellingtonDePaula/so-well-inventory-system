@@ -18,5 +18,5 @@ MonoBehaviour:
   Icon: {fileID: -2548187904757789788, guid: c32c792b029db0049b7631fcd0af13d0, type: 3}
   Price: 0
   IsStackable: 1
-  MaxStackSize: 5
+  MaxStackSize: 1
   IsPermanentSlot: 0

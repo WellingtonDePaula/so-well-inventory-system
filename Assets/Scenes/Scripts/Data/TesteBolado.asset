@@ -19,4 +19,4 @@ MonoBehaviour:
   Price: 0
   IsStackable: 0
   MaxStackSize: 1
-  IsPermanentSlot: 0
+  IsPermanentSlot: 1

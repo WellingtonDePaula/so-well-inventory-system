@@ -42,7 +42,7 @@ namespace Wellz.Inventory.Core.Controllers {
         }
 
         public bool SwapItem(ItemData item) {
-            bool swapped = model.SwapItem(item);
+            bool swapped = model.SetItem(item);
             view.SwapItem(item, model.Quantity);
             return swapped;
         }
