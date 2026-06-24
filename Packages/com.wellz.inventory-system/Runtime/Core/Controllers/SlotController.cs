@@ -67,7 +67,7 @@ namespace Wellz.Inventory.Core.Controllers {
         public void Setup(Vector2Int gridPos, ItemData item = null, int quantity = 0) {
             this.gridPos = gridPos;
             model = new SlotModel(item, quantity);
-            view.SetupView(item, quantity);
+            view.SetupView(model.Item, model.Quantity);
         }
         #endregion
 

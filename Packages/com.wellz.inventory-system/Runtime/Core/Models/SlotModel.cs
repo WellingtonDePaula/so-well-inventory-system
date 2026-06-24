@@ -26,9 +26,10 @@ namespace Wellz.Inventory.Core.Models {
 
             this.item = item;
             this.quantity = (item.IsStackable) ? quantity : 1;
-            ValidateQuantity();
 
             OnQuantityChanged += ValidateQuantity;
+
+            OnQuantityChanged?.Invoke();
         }
 
         #region Métodos públicos e privados da lógica da classe

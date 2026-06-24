@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Text response;
 
     public static GameManager Instance;
+    public static int SlotsCount = 0;
 
     private void Awake() {
         if (Instance == null) {
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
+    #region Button Purposes
     public void SetupController() {
         controller.Setup(new Vector2Int(0, 0), data, 1);
 
@@ -36,8 +37,5 @@ public class GameManager : MonoBehaviour {
 
         response.text = $"{remainder} removidos; {slider.value - remainder} restantes.";
     }
-
-    public void SwapItem() {
-
-    }
+    #endregion
 }

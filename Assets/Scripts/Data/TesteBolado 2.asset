@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca2c3961b4bce5439a5f532318f444f, type: 3}
   m_Name: TesteBolado 2
   m_EditorClassIdentifier: Wellz.Inventory.Runtime::Wellz.Inventory.Items.ItemData
-  ItemId: 2d4aa1a5-7f30-48f9-8d2d-91e7d785ca05
+  ItemId: c262651f-9c8b-458c-8463-8394be269e86
   DisplayName: TesteBolado 2
   Description: dawd
   Icon: {fileID: -2548187904757789788, guid: c32c792b029db0049b7631fcd0af13d0, type: 3}
   Price: 0
   IsStackable: 1
-  MaxStackSize: 1
+  MaxStackSize: 6
   IsPermanentSlot: 0

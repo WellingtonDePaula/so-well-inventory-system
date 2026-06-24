@@ -15,8 +15,8 @@ MonoBehaviour:
   ItemId: 2d4aa1a5-7f30-48f9-8d2d-91e7d785ca05
   DisplayName: TesteBolado
   Description: arthur vendo bola bolastica
-  Icon: {fileID: -2548187904757789788, guid: c32c792b029db0049b7631fcd0af13d0, type: 3}
+  Icon: {fileID: -4827944495032717347, guid: 27209187cce23f9458edf0d8b1ecbe16, type: 3}
   Price: 0
-  IsStackable: 0
+  IsStackable: 1
   MaxStackSize: 1
   IsPermanentSlot: 1
