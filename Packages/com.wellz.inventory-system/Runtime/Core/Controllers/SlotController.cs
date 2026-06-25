@@ -10,6 +10,10 @@ namespace Wellz.Inventory.Core.Controllers {
 
         // Campos expostos no Inspector
 
+        // TEMPORÁRIO ATÉ A CRIAÇÃO DO INVENTORY CONTROLLER
+        [SerializeField] private IInputProvider inputProvider;
+        //-----------------------------------------------//
+
         // Propriedades para acesso controlado externo
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
 

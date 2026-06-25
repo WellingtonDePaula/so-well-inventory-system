@@ -51,6 +51,22 @@ namespace Wellz.Inventory.Core.Views {
             iconImage.sprite = data.Icon;
             quantityText.text = quantity.ToString();
         }
+
+        public void HoverEnter() {
+            throw new System.NotImplementedException();
+        }
+
+        public void HoverExit() {
+            throw new System.NotImplementedException();
+        }
+
+        public void Select() {
+            throw new System.NotImplementedException();
+        }
+
+        public void Deselect() {
+            throw new System.NotImplementedException();
+        }
         #endregion
     }
 }
