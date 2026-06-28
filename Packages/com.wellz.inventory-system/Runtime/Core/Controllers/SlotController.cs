@@ -23,7 +23,7 @@ namespace Wellz.Inventory.Core.Controllers {
         private SlotModel model;
         private ISlotView view;
 
-        private bool isHovering = false;
+        private bool isFocused = false;
         private bool isSelected = false;
 
 
@@ -87,7 +87,7 @@ namespace Wellz.Inventory.Core.Controllers {
         }
 
         public void HoverSlot(bool hover) {
-            isHovering = hover;
+            isFocused = hover;
             if (hover) {
                 view.HoverEnter();
                 return;

@@ -24,6 +24,7 @@
 3. Corpo (opcional): Explicar o "porquê" e o "o que" de forma resumida e direta. NÃO narre todos os arquivos modificados.
 4. Rodapé (opcional): referência a issues ou mudanças incompatíveis.
    - Para breaking changes usar `BREAKING CHANGE: descrição`.
+5. Não se forçar a fazer descrições imensas do commit, caso seja um commit curto - poucas alterações - explique de forma rápida, não invente.
 
 ## Regras Específicas para Unity
 - IGNORAR arquivos `.meta` na descrição do commit. Não mencione atualizações de GUIDs ou mudanças automáticas da engine nesses arquivos, a menos que seja a única alteração do commit.
