@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DynamicInputProvider
   m_EditorClassIdentifier: Wellz.Inventory.Runtime::DynamicInputProvider
   clickAction: {fileID: 6382277463611434508, guid: 0ce3c517a0c4a9f4e9276859f4a79050, type: 3}
+  otherClickAction: {fileID: -8616287726607337128, guid: 0ce3c517a0c4a9f4e9276859f4a79050, type: 3}
   positionAction: {fileID: 5449207495170198000, guid: 0ce3c517a0c4a9f4e9276859f4a79050, type: 3}

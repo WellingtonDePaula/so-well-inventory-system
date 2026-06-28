@@ -1,12 +1,5 @@
-using Mono.Cecil.Cil;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Wellz.Inventory.Core.Interfaces;
-using Wellz.Inventory.Core.Models;
-using Wellz.Inventory.Core.Views;
 using Wellz.Inventory.Input;
-using Wellz.Inventory.Items;
 using Wellz.Utils.Core;
 
 namespace Wellz.Inventory.Core.Controllers {
@@ -79,14 +72,15 @@ namespace Wellz.Inventory.Core.Controllers {
             }
         }
         private void HandleOnReleased() {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
         private void HandleOnOtherReleased() {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void HandleOnOtherPressed() {
-            throw new NotImplementedException();
+            if (currentSelectedSlot == null) { return; }
+            currentSelectedSlot.AddItem(currentSelectedSlot.Item, 1);
         }
         private void HandleOnPositionChanged(Vector2 pos) {
             SlotController slotUnder = null;

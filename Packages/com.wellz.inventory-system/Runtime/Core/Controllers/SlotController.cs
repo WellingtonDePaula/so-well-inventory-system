@@ -16,6 +16,7 @@ namespace Wellz.Inventory.Core.Controllers {
         // Propriedades para acesso controlado externo
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
         public RectTransform RectTransform => rectTransform;
+        public ItemData Item => model.Item;
 
         // Campos privados para o estado interno da classe
         private Vector2Int gridPos;
