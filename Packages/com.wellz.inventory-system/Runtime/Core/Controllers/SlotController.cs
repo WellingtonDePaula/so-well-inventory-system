@@ -7,58 +7,37 @@ using Wellz.Inventory.Items;
 
 namespace Wellz.Inventory.Core.Controllers {
     [RequireComponent(typeof(ISlotView))]
-    public class SlotController : MonoBehaviour, ISlotController {
+    public class SlotController : SlotControllerBase {
         // Campos estáticos e constantes
 
         // Campos expostos no Inspector
-        [SerializeField] private RectTransform rectTransform;
 
         // Propriedades para acesso controlado externo
-        public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
-        public RectTransform RectTransform => rectTransform;
-        public ItemData Item => model.Item;
 
         // Campos privados para o estado interno da classe
-        private Vector2Int gridPos;
-
-        private SlotModel model;
-        private ISlotView view;
-
-        private bool isFocused = false;
-        private bool isSelected = false;
 
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
-
-        private void Awake() {
-            view = GetComponent<ISlotView>();
-        }
-
-        private void OnDestroy() {
-            if (model != null) {
-                model.OnQuantityChanged -= HandleModelChanged;
-            }
-        }
 
         #endregion
 
         #region Métodos públicos e privados da lógica da classe
 
-        public int RemoveItem(ItemData item, int quantity = 1) {
+        public override int RemoveItem(ItemData item, int quantity = 1) {
             int remainder = model.RemoveItem(item, quantity);
             return remainder;
         }
-        public int AddItem(ItemData item, int quantity = 1) {
+        public override int AddItem(ItemData item, int quantity = 1) {
             return model.AddItem(item, quantity);
         }
 
-        public bool SwapItem(ItemData item) {
+        public override bool SwapItem(ItemData item) {
             bool swapped = model.SetItem(item);
             view.SwapItem(item, model.Quantity);
             return swapped;
         }
 
-        public bool SwapSlot(ISlotController slot) {
+        public override bool SwapSlot(ISlotController slot) {
             if (slot == null) {
                 return false;
             }
@@ -75,7 +54,7 @@ namespace Wellz.Inventory.Core.Controllers {
             return true;
         }
 
-        public void Setup(Vector2Int gridPos, ItemData item = null, int quantity = 0) {
+        public override void Setup(Vector2Int gridPos, ItemData item = null, int quantity = 0) {
             this.gridPos = gridPos;
             model = new SlotModel(item, quantity);
 
@@ -83,11 +62,11 @@ namespace Wellz.Inventory.Core.Controllers {
 
             view.SetupView(model.Item, model.Quantity);
         }
-        private void HandleModelChanged() {
+        protected override void HandleModelChanged() {
             view.RefreshView(model.Item, model.Quantity);
         }
 
-        public void FocusSlot(bool hover) {
+        public override void FocusSlot(bool hover) {
             isFocused = hover;
             if (isSelected) { return; }
 
@@ -98,7 +77,7 @@ namespace Wellz.Inventory.Core.Controllers {
             view.FocusEnded();
         }
 
-        public void SelectSlot(bool select) {
+        public override void SelectSlot(bool select) {
             isSelected = select;
 
             if (select) {
