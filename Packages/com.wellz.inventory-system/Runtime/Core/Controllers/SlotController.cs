@@ -4,6 +4,7 @@ using Wellz.Inventory.Core.Interfaces;
 using Wellz.Inventory.Core.Models;
 using Wellz.Inventory.Input;
 using Wellz.Inventory.Items;
+using Wellz.Utils.Core;
 
 namespace Wellz.Inventory.Core.Controllers {
     [RequireComponent(typeof(ISlotView))]
@@ -18,7 +19,6 @@ namespace Wellz.Inventory.Core.Controllers {
 
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
-
         #endregion
 
         #region Métodos públicos e privados da lógica da classe
@@ -54,8 +54,7 @@ namespace Wellz.Inventory.Core.Controllers {
             return true;
         }
 
-        public override void Setup(Vector2Int gridPos, ItemData item = null, int quantity = 0) {
-            this.gridPos = gridPos;
+        public override void Setup(ItemData item = null, int quantity = 0) {
             model = new SlotModel(item, quantity);
 
             model.OnQuantityChanged += HandleModelChanged;

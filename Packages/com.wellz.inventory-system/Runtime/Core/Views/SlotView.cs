@@ -21,7 +21,7 @@ namespace Wellz.Inventory.Core.Views {
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
 
-        private void Start() {
+        private void Awake() {
             rectTransform = backgroundImage.rectTransform;
         }
 

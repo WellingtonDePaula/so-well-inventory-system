@@ -43,6 +43,9 @@ namespace Wellz.Inventory.Core.Controllers {
         #endregion
 
         #region Métodos públicos e privados da lógica da classe
+        public virtual void CreateSlot(Vector2Int gridPos) {
+            this.gridPos = gridPos;
+        }
 
         public abstract int RemoveItem(ItemData item, int quantity = 1);
         public abstract int AddItem(ItemData item, int quantity = 1);
@@ -51,7 +54,7 @@ namespace Wellz.Inventory.Core.Controllers {
 
         public abstract bool SwapSlot(ISlotController slot);
 
-        public abstract void Setup(Vector2Int gridPos, ItemData item = null, int quantity = 0);
+        public abstract void Setup(ItemData item = null, int quantity = 0);
         protected abstract void HandleModelChanged();
 
         public abstract void FocusSlot(bool hover);

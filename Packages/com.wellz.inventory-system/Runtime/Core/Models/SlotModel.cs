@@ -19,13 +19,19 @@ namespace Wellz.Inventory.Core.Models {
 
         // Construtor
         public SlotModel(ItemData item, int quantity) {
-            if (!item.IsPermanentSlot && quantity == 0) {
-                Debug.LogWarning("ItemData passed does not support permanent slot! Ignoring data.");
-                return;
+            if(item != null) {
+                if (!item.IsPermanentSlot && quantity == 0) {
+                    Debug.LogWarning("ItemData passed does not support permanent slot! Ignoring data.");
+                    return;
+                }
             }
 
             this.item = item;
-            this.quantity = (item.IsStackable) ? quantity : 1;
+            if (item != null) {
+                this.quantity = (item.IsStackable) ? quantity : 1;
+            } else {
+                this.quantity = 0;
+            }
 
             OnQuantityChanged += ValidateQuantity;
 
@@ -96,13 +102,17 @@ namespace Wellz.Inventory.Core.Models {
         }
 
         private void ValidateQuantity() {
-            if (quantity <= 0 && item != null) {
-                quantity = 0;
-                if (item.IsPermanentSlot) {
-                    return;
+            if(item != null) {
+                if (quantity <= 0) {
+                    quantity = 0;
+                    if (item.IsPermanentSlot) {
+                        return;
+                    }
+                    item = null;
                 }
-                item = null;
+                return;
             }
+            quantity = 0;
         }
         #endregion
     }

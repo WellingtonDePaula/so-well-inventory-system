@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Wellz.Inventory.Core.Models;
 using Wellz.Inventory.Input;
 using Wellz.Utils.Core;
 
@@ -14,21 +17,16 @@ namespace Wellz.Inventory.Core.Controllers {
 
         [SerializeField] protected InputProvider inputProvider;
 
+        [SerializeField] protected List<InventoryStartItem> initialItems;
+
         // Propriedades para acesso controlado externo
 
         // Campos privados para o estado interno da classe
-        protected SlotController currentHoverSlot = null;
-        protected SlotController currentSelectedSlot = null;
-        protected GenericGrid<SlotController> inventoryGrid;
+        protected SlotControllerBase currentHoverSlot = null;
+        protected SlotControllerBase currentSelectedSlot = null;
+        protected GenericGrid<SlotControllerBase> inventoryGrid;
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
-        protected virtual void Awake() {
-            inventoryGrid = new GenericGrid<SlotController>(width, height, 1, default, (grid, x, y) => {
-                var slot = Instantiate(slotPrefab, slotsTransform).GetComponent<SlotController>();
-                slot.transform.localPosition = new Vector3(x, y, 0);
-                return slot;
-            });
-        }
 
         protected virtual void OnEnable() {
             if (inputProvider != null) {
@@ -65,6 +63,15 @@ namespace Wellz.Inventory.Core.Controllers {
         protected abstract void HandleOnOtherPressed();
 
         protected abstract void HandleOnPositionChanged(Vector2 pos);
-    }
+
+        protected virtual void InitializeItems() {
+            List<SlotControllerBase> allSlots = inventoryGrid.GetAllValues().ToList();
+            for (int i = 0; i < allSlots.Count(); i++) {
+                var slot = allSlots[i];
+                slot.Setup(initialItems[i].Item, initialItems[i].Quantity);
+            }
+        }
         #endregion
+
+    }
 }

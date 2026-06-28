@@ -20,7 +20,8 @@ public class SetupSlot : MonoBehaviour {
         SlotController controller = GetComponent<SlotController>();
         position = GameManager.SlotsCount;
 
-        controller.Setup(new Vector2Int(position, 0), item, quantity);
+        controller.CreateSlot(new Vector2Int(position, 0));
+        controller.Setup(item, quantity);
         GameManager.SlotsCount ++;
     }
     #endregion

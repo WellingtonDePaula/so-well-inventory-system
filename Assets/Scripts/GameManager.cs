@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour {
     }
     #region Button Purposes
     public void SetupController() {
-        controller.Setup(new Vector2Int(0, 0), data, 1);
+        controller.CreateSlot(new Vector2Int(0, 0));
+        controller.Setup(data, 1);
 
         response.text = "Setup concluido com sucesso!";
     }

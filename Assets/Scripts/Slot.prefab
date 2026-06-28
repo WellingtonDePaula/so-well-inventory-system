@@ -181,7 +181,6 @@ GameObject:
   - component: {fileID: 5829431675794550340}
   - component: {fileID: 4138696901512036193}
   - component: {fileID: 1535581414048194826}
-  - component: {fileID: 4752981844575182310}
   m_Layer: 0
   m_Name: Slot
   m_TagString: Untagged
@@ -239,21 +238,6 @@ MonoBehaviour:
   backgroundImage: {fileID: 1072984585272211930}
   iconImage: {fileID: 7230440771734228332}
   quantityText: {fileID: 5479785497485412470}
---- !u!114 &4752981844575182310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4230778155717964234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b90e643a29b1eb4ba5fb472b88c7726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SetupSlot
-  item: {fileID: 11400000, guid: 9b672be9e9dab1947b5768731fd4e267, type: 2}
-  quantity: 3
-  position: 0
 --- !u!1 &5417966987663099032
 GameObject:
   m_ObjectHideFlags: 0

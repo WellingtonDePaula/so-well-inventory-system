@@ -439,9 +439,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Wellz.Inventory.Runtime::Wellz.Inventory.Core.Controllers.InventoryController
   slotPrefab: {fileID: 4230778155717964234, guid: 4941394824663bb42b7f4d55c95abaf2, type: 3}
   width: 2
-  height: 1
+  height: 2
   slotsTransform: {fileID: 1753736353}
   inputProvider: {fileID: 11400000, guid: fa0040cc386f1ea4b9b9d8f386c7f6f6, type: 2}
+  initialItems:
+  - Item: {fileID: 11400000, guid: 9b672be9e9dab1947b5768731fd4e267, type: 2}
+    Quantity: 2
+  - Item: {fileID: 11400000, guid: ceb046f2e8721dd4c947c5d99b44f96b, type: 2}
+    Quantity: 0
+  - Item: {fileID: 0}
+    Quantity: 2
+  - Item: {fileID: 11400000, guid: 9b672be9e9dab1947b5768731fd4e267, type: 2}
+    Quantity: 0
 --- !u!1 &1481048433
 GameObject:
   m_ObjectHideFlags: 0
