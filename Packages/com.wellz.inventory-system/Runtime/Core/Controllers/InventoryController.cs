@@ -1,4 +1,5 @@
 using Mono.Cecil.Cil;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Wellz.Inventory.Core.Interfaces;
@@ -41,6 +42,9 @@ namespace Wellz.Inventory.Core.Controllers {
                 inputProvider.Activate();
                 inputProvider.OnPressed += HandleOnPressed;
                 inputProvider.OnReleased += HandleOnReleased;
+
+                inputProvider.OnOtherPressed += HandleOnOtherPressed;
+                inputProvider.OnOtherReleased += HandleOnOtherReleased;
                 inputProvider.OnPositionChanged += HandleOnPositionChanged;
             }
         }
@@ -49,6 +53,9 @@ namespace Wellz.Inventory.Core.Controllers {
             if (inputProvider != null) {
                 inputProvider.OnPressed -= HandleOnPressed;
                 inputProvider.OnReleased -= HandleOnReleased;
+
+                inputProvider.OnOtherPressed -= HandleOnOtherPressed;
+                inputProvider.OnOtherReleased -= HandleOnOtherReleased;
                 inputProvider.OnPositionChanged -= HandleOnPositionChanged;
                 inputProvider.Deactivate();
             }
@@ -66,14 +73,20 @@ namespace Wellz.Inventory.Core.Controllers {
             currentSelectedSlot?.SelectSlot(false);
             currentSelectedSlot = null;
 
-            // Se o clique foi em um slot diferente, faz a nova seleção
             if (!clickedSameSlot) {
                 currentHoverSlot.SelectSlot(true);
                 currentSelectedSlot = currentHoverSlot;
             }
         }
         private void HandleOnReleased() {
+            throw new NotImplementedException();
+        }
+        private void HandleOnOtherReleased() {
+            throw new NotImplementedException();
+        }
 
+        private void HandleOnOtherPressed() {
+            throw new NotImplementedException();
         }
         private void HandleOnPositionChanged(Vector2 pos) {
             SlotController slotUnder = null;

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Wellz.Inventory.Input;
@@ -9,6 +10,7 @@ public class DynamicInputProvider : InputProvider {
     // Campos expostos no Inspector
     [Header("Input Actions (Arraste do seu PlayerControls)")]
     [SerializeField] private InputActionReference clickAction;
+    [SerializeField] private InputActionReference otherClickAction;
     [SerializeField] private InputActionReference positionAction;
 
     // Propriedades para acesso controlado externo
@@ -16,14 +18,25 @@ public class DynamicInputProvider : InputProvider {
     // Campos privados para o estado interno da classe
     private void OnClickPerformed(InputAction.CallbackContext ctx) => InvokePressed();
     private void OnClickCanceled(InputAction.CallbackContext ctx) => InvokeReleased();
+    private void OnOtherClickPerformed(InputAction.CallbackContext ctx) => InvokeOtherPressed();
+    private void OnOtherClickCanceled(InputAction.CallbackContext ctx) => InvokeOtherReleased();
     private void OnPositionPerformed(InputAction.CallbackContext ctx) => InvokePositionChanged(ctx.ReadValue<Vector2>());
 
     #region Métodos do ciclo de vida do ScriptableObject (OnEnable, OnDisable, OnDestroy)
+    #endregion
+
+    #region Métodos públicos e privados da lógica da classe
     public override void Activate() {
         if (clickAction != null) {
             clickAction.action.Enable();
             clickAction.action.performed += OnClickPerformed;
             clickAction.action.canceled += OnClickCanceled;
+        }
+
+        if (otherClickAction != null) {
+            otherClickAction.action.Enable();
+            otherClickAction.action.performed += OnOtherClickPerformed;
+            otherClickAction.action.canceled += OnOtherClickCanceled;
         }
 
         if (positionAction != null) {
@@ -32,6 +45,7 @@ public class DynamicInputProvider : InputProvider {
         }
     }
 
+
     public override void Deactivate() {
         if (clickAction != null) {
             clickAction.action.performed -= OnClickPerformed;
@@ -39,14 +53,17 @@ public class DynamicInputProvider : InputProvider {
             clickAction.action.Disable();
         }
 
+        if (otherClickAction != null) {
+            otherClickAction.action.performed -= OnOtherClickPerformed;
+            otherClickAction.action.canceled -= OnOtherClickCanceled;
+            otherClickAction.action.Disable();
+        }
+
         if (positionAction != null) {
             positionAction.action.performed -= OnPositionPerformed;
             positionAction.action.Disable();
         }
     }
-    #endregion
-
-    #region Métodos públicos e privados da lógica da classe
     public override Vector2 Position() {
         return positionAction != null ? positionAction.action.ReadValue<Vector2>() : Vector2.zero;
     }
