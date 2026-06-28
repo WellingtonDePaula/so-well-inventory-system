@@ -11,7 +11,7 @@ namespace Wellz.Inventory.Core.Controllers {
         // Campos estáticos e constantes
 
         // Campos expostos no Inspector
-        [SerializeField] private RectTransform rectTransform; 
+        [SerializeField] private RectTransform rectTransform;
 
         // Propriedades para acesso controlado externo
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
@@ -86,18 +86,28 @@ namespace Wellz.Inventory.Core.Controllers {
             view.RefreshView(model.Item, model.Quantity);
         }
 
-        public void HoverSlot(bool hover) {
+        public void FocusSlot(bool hover) {
             isFocused = hover;
+            if (isSelected) { return; }
+
             if (hover) {
-                view.HoverEnter();
+                view.FocusStarted();
                 return;
             }
-            if (isSelected) { return; }
-            view.HoverExit();
+            view.FocusEnded();
         }
 
         public void SelectSlot(bool select) {
-            throw new NotImplementedException();
+            isSelected = select;
+
+            if (select) {
+                view.Select();
+                return;
+            }
+            view.Deselect();
+            if (isFocused) {
+                view.FocusStarted();
+            }
         }
         #endregion
 

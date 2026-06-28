@@ -57,15 +57,20 @@ namespace Wellz.Inventory.Core.Controllers {
 
         #region Métodos públicos e privados da lógica da classe
         private void HandleOnPressed() {
-            if (currentHoverSlot == null) { return; }
-
-            if (currentSelectedSlot != currentHoverSlot && currentSelectedSlot != null) {
-                currentSelectedSlot.SelectSlot(true);
-                currentSelectedSlot = null;
+            if (currentHoverSlot == null) {
+                return;
             }
 
-            currentHoverSlot.SelectSlot(false);
-            currentSelectedSlot = currentHoverSlot;
+            bool clickedSameSlot = (currentSelectedSlot == currentHoverSlot);
+
+            currentSelectedSlot?.SelectSlot(false);
+            currentSelectedSlot = null;
+
+            // Se o clique foi em um slot diferente, faz a nova seleção
+            if (!clickedSameSlot) {
+                currentHoverSlot.SelectSlot(true);
+                currentSelectedSlot = currentHoverSlot;
+            }
         }
         private void HandleOnReleased() {
 
@@ -80,13 +85,13 @@ namespace Wellz.Inventory.Core.Controllers {
 
             if (slotUnder != currentHoverSlot) {
                 if (currentHoverSlot != null) {
-                    currentHoverSlot.HoverSlot(false);
+                    currentHoverSlot.FocusSlot(false);
                 }
 
                 currentHoverSlot = slotUnder;
 
                 if (currentHoverSlot != null) {
-                    currentHoverSlot.HoverSlot(true);
+                    currentHoverSlot.FocusSlot(true);
                 }
             }
         }

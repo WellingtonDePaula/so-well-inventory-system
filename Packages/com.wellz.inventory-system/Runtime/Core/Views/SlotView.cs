@@ -58,24 +58,26 @@ namespace Wellz.Inventory.Core.Views {
             quantityText.text = quantity.ToString();
         }
 
-        public void HoverEnter() {
+        public void FocusStarted() {
             backgroundImage.color = UtilsClass.GetRandomColor();
             rectTransform.localScale = new Vector3(1.1f, 1.1f);
         }
 
-        public void HoverExit() {
+        public void FocusEnded() {
             backgroundImage.color = Color.white;
             rectTransform.localScale = new Vector3(1, 1);
         }
 
         public void Select() {
             backgroundImage.color = UtilsClass.GetRandomColor();
-            rectTransform.localScale = new Vector3(1.1f, 1.1f);
+            rectTransform.localScale = new Vector3(0.9f, 0.9f);
+            rectTransform.localRotation = Quaternion.Euler(0, 0, 45);
         }
 
         public void Deselect() {
             backgroundImage.color = Color.white;
             rectTransform.localScale = new Vector3(1, 1);
+            rectTransform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         #endregion
     }
