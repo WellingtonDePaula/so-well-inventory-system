@@ -16,7 +16,6 @@ namespace Wellz.Inventory.Core.Controllers {
 
         // Propriedades para acesso controlado externo
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
-        public RectTransform RectTransform => rectTransform;
         public ItemData Item => model?.Item;
         public bool IsFocused => isFocused;
         public bool IsSelected => isSelected;
@@ -61,6 +60,9 @@ namespace Wellz.Inventory.Core.Controllers {
         public abstract void FocusSlot(bool hover);
 
         public abstract void SelectSlot(bool select);
+        public virtual bool ContainsScreenPoint(Vector2 screenPoint, Camera eventCamera) {
+            return RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPoint, eventCamera);
+        }
 
         // Centraliza a desinscrição do evento do model. Evita assinatura duplicada
         // quando Setup() é chamado mais de uma vez (ex.: slot reciclado em um pool)

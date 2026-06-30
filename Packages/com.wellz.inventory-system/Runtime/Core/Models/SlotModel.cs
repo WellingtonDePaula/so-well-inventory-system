@@ -20,22 +20,15 @@ namespace Wellz.Inventory.Core.Models {
 
         // Construtor
         public SlotModel(ItemData item, int quantity) {
-            if(item != null) {
-                if (!item.IsPermanentSlot && quantity == 0) {
-                    Debug.LogWarning("ItemData passed does not support permanent slot! Ignoring data.");
-                    return;
-                }
+            if (item != null && !item.IsPermanentSlot && quantity <= 0) {
+                Debug.LogWarning("ItemData passed does not support permanent slot! Ignoring data.");
+                item = null;
             }
 
             this.item = item;
-            if (item != null) {
-                this.quantity = (item.IsStackable) ? quantity : 1;
-            } else {
-                this.quantity = 0;
-            }
+            this.quantity = (this.item != null) ? (this.item.IsStackable ? quantity : 1) : 0;
 
             OnQuantityChanged += ValidateQuantity;
-
             OnQuantityChanged?.Invoke(this.quantity);
         }
 
@@ -46,75 +39,57 @@ namespace Wellz.Inventory.Core.Models {
             this.item = item;
             this.quantity = 1;
 
+            OnQuantityChanged?.Invoke(this.quantity);
+
             return true;
         }
 
         public int AddItem(ItemData item, int addQuantity = 1) {
-            if (this.item == null || this.item != item) {
+            if (this.item == null || this.item != item || !item.IsStackable) {
                 return addQuantity;
             }
 
-            if (item.IsStackable) {
-                int remainingSpace = this.item.MaxStackSize - this.quantity;
+            int remainingSpace = this.item.MaxStackSize - this.quantity;
+            int amountToAdd = Mathf.Min(addQuantity, remainingSpace);
+            int leftover = addQuantity - amountToAdd;
 
-                if (addQuantity <= remainingSpace) {
-                    this.quantity += addQuantity;
-
-                    OnQuantityChanged?.Invoke(this.quantity);
-
-                    return 0;
-                } else {
-                    this.quantity = this.item.MaxStackSize;
-                    int leftover = addQuantity - remainingSpace;
-
-                    OnQuantityChanged?.Invoke(this.quantity);
-
-                    return leftover;
-                }
+            if (amountToAdd > 0) {
+                this.quantity += amountToAdd;
+                OnQuantityChanged?.Invoke(this.quantity);
             }
-            return addQuantity;
+
+            return leftover;
         }
 
         public int RemoveItem(ItemData item, int removeQuantity = 1) {
-            if (this.item == null || this.quantity <= 0 || this.item != item || removeQuantity <= 0) {
-                return 0;
-            }
-
-            int difference = this.quantity - removeQuantity;
-            bool isStackable = this.item.IsStackable;
-
-            if (difference > 0) {
-                this.quantity = difference;
-                OnQuantityChanged?.Invoke(this.quantity);
+            if (this.item == null || this.item != item || removeQuantity <= 0) {
                 return removeQuantity;
-            } else {
-                int removedAmount = this.quantity;
-
-                if (!this.item.IsPermanentSlot) {
-                    this.item = null;
-                }
-
-                this.quantity = 0;
-                OnQuantityChanged?.Invoke(this.quantity);
-
-                if (!isStackable) { return 1; }
-
-                return removedAmount;
             }
+
+            int amountToRemove = Mathf.Min(removeQuantity, this.quantity);
+            int leftover = removeQuantity - amountToRemove;
+
+            this.quantity -= amountToRemove;
+            OnQuantityChanged?.Invoke(this.quantity);
+
+            return leftover;
         }
 
-        private void ValidateQuantity(int quantity) {
-            if(item != null) {
-                if (quantity <= 0) {
-                    quantity = 0;
-                    if (item.IsPermanentSlot) {
-                        return;
-                    }
-                    item = null;
-                }
+        private void ValidateQuantity(int newQuantity) {
+            if (item == null) {
+                quantity = 0;
                 return;
             }
+
+            if (newQuantity > 0) {
+                return;
+            }
+
             quantity = 0;
+
+            if (!item.IsPermanentSlot) {
+                item = null;
+            }
         }
         #endregion
     }

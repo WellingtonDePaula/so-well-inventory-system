@@ -46,7 +46,7 @@ namespace Wellz.Inventory.Core.Controllers {
         protected override void HandleOnPositionChanged(Vector2 pos) {
             SlotControllerBase slotUnder = null;
             inventoryGrid.ForEach((x, y, slot) => {
-                if (RectTransformUtility.RectangleContainsScreenPoint(slot.RectTransform, pos)) {
+                if (slot.ContainsScreenPoint(pos, eventCamera)) {
                     slotUnder = slot;
                 }
             });
@@ -63,6 +63,6 @@ namespace Wellz.Inventory.Core.Controllers {
                 }
             }
         }
-    }
         #endregion
+    }
 }

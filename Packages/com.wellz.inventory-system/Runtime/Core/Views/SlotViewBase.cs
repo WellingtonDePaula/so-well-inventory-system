@@ -9,15 +9,15 @@ namespace Wellz.Inventory.Core.Views {
         // Campos estáticos e constantes
 
         // Campos expostos no Inspector
-        [SerializeField] private Image backgroundImage;
-        [SerializeField] private Image iconImage;
-        [SerializeField] private Text quantityText;
+        [SerializeField] protected Image backgroundImage;
+        [SerializeField] protected Image iconImage;
+        [SerializeField] protected Text quantityText;
 
         // Propriedades para acesso controlado externo
 
         // Campos privados para o estado interno da classe
-        private ItemData itemData;
-        private RectTransform rectTransform;
+        protected ItemData itemData;
+        protected RectTransform rectTransform;
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
 

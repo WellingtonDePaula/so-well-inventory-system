@@ -44,7 +44,7 @@ namespace Wellz.Inventory.Core.Controllers {
             }
 
             bool swapped = model.SetItem(item);
-            view.SwapItem(item, model.Quantity);
+
             return swapped;
         }
 
@@ -77,17 +77,19 @@ namespace Wellz.Inventory.Core.Controllers {
 
         protected override void HandleModelChanged(int quantity) {
             view.RefreshView(model.Item, quantity);
-
+            Debug.Log($"Selecionado: {isSelected}, Focused: {IsFocused}");
             if (model.IsEmpty && isSelected) {
+                Debug.Log("Deselecionando o slot");
                 SelectSlot(false);
             }
+            Debug.Log($"Selecionado: {isSelected}, Focused: {IsFocused}");
         }
 
-        public override void FocusSlot(bool hover) {
-            isFocused = hover;
+        public override void FocusSlot(bool focus) {
+            isFocused = focus;
             if (isSelected) { return; }
 
-            if (hover) {
+            if (focus) {
                 view.FocusStarted();
                 return;
             }

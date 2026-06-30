@@ -13,5 +13,6 @@ namespace Wellz.Inventory.Core.Interfaces {
         void Setup(ItemData item = null, int quantity = 0);
         void FocusSlot(bool hover);
         void SelectSlot(bool select);
+        bool ContainsScreenPoint(Vector2 screenPoint, Camera eventCamera);
     }
 }

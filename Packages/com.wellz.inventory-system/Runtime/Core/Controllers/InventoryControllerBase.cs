@@ -14,6 +14,7 @@ namespace Wellz.Inventory.Core.Controllers {
         [SerializeField] protected int width;
         [SerializeField] protected int height;
         [SerializeField] protected Transform slotsTransform;
+        [SerializeField] protected Canvas rootCanvas;
 
         [SerializeField] protected InputProvider inputProvider;
 
@@ -25,9 +26,12 @@ namespace Wellz.Inventory.Core.Controllers {
         protected SlotControllerBase currentHoverSlot = null;
         protected SlotControllerBase currentSelectedSlot = null;
         protected GenericGrid<SlotControllerBase> inventoryGrid;
+        protected Camera eventCamera;
 
         #region Métodos do ciclo de vida da Unity (Awake, OnEnable, Start, OnDisable)
         protected virtual void Awake() {
+            eventCamera = UtilsClass.ResolveEventCamera(rootCanvas);
+
             inventoryGrid = new GenericGrid<SlotControllerBase>(width, height, 1, default, (grid, x, y) => {
                 var slot = Instantiate(slotPrefab, slotsTransform).GetComponent<SlotControllerBase>();
                 slot.CreateSlot(new Vector2Int(x, y));
@@ -74,10 +78,10 @@ namespace Wellz.Inventory.Core.Controllers {
 
         protected virtual void InitializeItems() {
             List<SlotControllerBase> allSlots = inventoryGrid.GetAllValues().ToList();
-            for (int i = 0; i < allSlots.Count(); i++) {
+            for (int i = 0; i < allSlots.Count; i++) {
                 var slot = allSlots[i];
 
-                if (i <= initialItems.Count() - 1) {
+                if (i <= initialItems.Count - 1) {
                     slot.Setup(initialItems[i].Item, initialItems[i].Quantity);
                     continue;
                 }
