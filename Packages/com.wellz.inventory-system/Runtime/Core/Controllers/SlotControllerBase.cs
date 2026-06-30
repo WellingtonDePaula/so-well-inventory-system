@@ -17,6 +17,7 @@ namespace Wellz.Inventory.Core.Controllers {
         // Propriedades para acesso controlado externo
         public Vector2Int GridPos { get => gridPos; set => gridPos = value; }
         public ItemData Item => model?.Item;
+        public bool IsEmpty => model?.Item == null;
         public bool IsFocused => isFocused;
         public bool IsSelected => isSelected;
 

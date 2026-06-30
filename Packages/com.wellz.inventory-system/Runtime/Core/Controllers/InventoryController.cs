@@ -20,6 +20,9 @@ namespace Wellz.Inventory.Core.Controllers {
             if (currentHoverSlot == null) {
                 return;
             }
+            if (IsSlotAvailableToSelect()) {
+                return;
+            }
 
             bool clickedSameSlot = (currentSelectedSlot == currentHoverSlot);
 
@@ -62,6 +65,10 @@ namespace Wellz.Inventory.Core.Controllers {
                     currentHoverSlot.FocusSlot(true);
                 }
             }
+        }
+
+        private bool IsSlotAvailableToSelect() {
+            return !currentHoverSlot.IsEmpty;
         }
         #endregion
     }
