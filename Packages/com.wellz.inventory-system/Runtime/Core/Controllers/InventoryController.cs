@@ -48,12 +48,7 @@ namespace Wellz.Inventory.Core.Controllers {
             currentSelectedSlot.RemoveItem(currentSelectedSlot.Item, 1);
         }
         protected override void HandleOnPositionChanged(Vector2 pos) {
-            SlotControllerBase slotUnder = null;
-            inventoryGrid.ForEach((x, y, slot) => {
-                if (slot.ContainsScreenPoint(pos, eventCamera)) {
-                    slotUnder = slot;
-                }
-            });
+            SlotControllerBase slotUnder = FindSlotUnderPoint(pos);
 
             if (slotUnder != currentHoverSlot) {
                 if (currentHoverSlot != null) {
@@ -76,6 +71,18 @@ namespace Wellz.Inventory.Core.Controllers {
 
         protected override bool IsSlotAvailableToSelect() {
             return !currentHoverSlot.IsEmpty;
+        }
+
+        private SlotControllerBase FindSlotUnderPoint(Vector2 screenPoint) {
+            for (int x = 0; x < inventoryGrid.Width; x++) {
+                for (int y = 0; y < inventoryGrid.Height; y++) {
+                    var slot = inventoryGrid.GetValue(x, y);
+                    if (slot.ContainsScreenPoint(screenPoint, eventCamera)) {
+                        return slot;
+                    }
+                }
+            }
+            return null;
         }
         #endregion
     }
