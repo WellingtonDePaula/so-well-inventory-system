@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Wellz.Inventory.Core.Models;
@@ -51,6 +52,11 @@ namespace Wellz.Inventory.Core.Controllers {
 
                 inputProvider.OnPositionChanged += HandleOnPositionChanged;
             }
+            if (inventoryGrid != null) {
+                inventoryGrid.ForEach((x, y, slot) => {
+                    slot.OnItemEnded += HandleOnItemEnded;
+                });
+            }
         }
 
         protected virtual void OnDisable() {
@@ -64,6 +70,11 @@ namespace Wellz.Inventory.Core.Controllers {
                 inputProvider.OnPositionChanged -= HandleOnPositionChanged;
                 inputProvider.Deactivate();
             }
+            if (inventoryGrid != null) {
+                inventoryGrid.ForEach((x, y, slot) => {
+                    slot.OnItemEnded -= HandleOnItemEnded;
+                });
+            }
         }
         #endregion
 
@@ -76,6 +87,8 @@ namespace Wellz.Inventory.Core.Controllers {
 
         protected abstract void HandleOnPositionChanged(Vector2 pos);
 
+        protected abstract void HandleOnItemEnded(SlotControllerBase slotController);
+        protected abstract bool IsSlotAvailableToSelect();
         protected virtual void InitializeItems() {
             List<SlotControllerBase> allSlots = inventoryGrid.GetAllValues().ToList();
             for (int i = 0; i < allSlots.Count; i++) {

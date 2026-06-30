@@ -1,5 +1,6 @@
 using UnityEngine;
 using Wellz.Inventory.Input;
+using Wellz.Inventory.Items;
 using Wellz.Utils.Core;
 
 namespace Wellz.Inventory.Core.Controllers {
@@ -20,7 +21,7 @@ namespace Wellz.Inventory.Core.Controllers {
             if (currentHoverSlot == null) {
                 return;
             }
-            if (IsSlotAvailableToSelect()) {
+            if (!IsSlotAvailableToSelect()) {
                 return;
             }
 
@@ -66,8 +67,14 @@ namespace Wellz.Inventory.Core.Controllers {
                 }
             }
         }
+        protected override void HandleOnItemEnded(SlotControllerBase slotController) {
+            if (currentSelectedSlot == slotController) {
+                currentSelectedSlot?.SelectSlot(false);
+                currentSelectedSlot = null;
+            }
+        }
 
-        private bool IsSlotAvailableToSelect() {
+        protected override bool IsSlotAvailableToSelect() {
             return !currentHoverSlot.IsEmpty;
         }
         #endregion

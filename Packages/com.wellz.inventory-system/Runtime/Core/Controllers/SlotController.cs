@@ -27,6 +27,11 @@ namespace Wellz.Inventory.Core.Controllers {
             }
 
             int remainder = model.RemoveItem(item, quantity);
+
+            if (model.IsEmpty) {
+                InvokeOnItemEnded(this);
+            }
+
             return remainder;
         }
 
@@ -77,12 +82,9 @@ namespace Wellz.Inventory.Core.Controllers {
 
         protected override void HandleModelChanged(int quantity) {
             view.RefreshView(model.Item, quantity);
-            Debug.Log($"Selecionado: {isSelected}, Focused: {IsFocused}");
             if (model.IsEmpty && isSelected) {
-                Debug.Log("Deselecionando o slot");
                 SelectSlot(false);
             }
-            Debug.Log($"Selecionado: {isSelected}, Focused: {IsFocused}");
         }
 
         public override void FocusSlot(bool focus) {

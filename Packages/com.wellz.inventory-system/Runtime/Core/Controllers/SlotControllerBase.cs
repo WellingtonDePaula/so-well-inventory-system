@@ -20,6 +20,7 @@ namespace Wellz.Inventory.Core.Controllers {
         public bool IsEmpty => model?.Item == null;
         public bool IsFocused => isFocused;
         public bool IsSelected => isSelected;
+        public event Action<SlotControllerBase> OnItemEnded;
 
         // Campos privados para o estado interno da classe
         protected Vector2Int gridPos;
@@ -63,6 +64,9 @@ namespace Wellz.Inventory.Core.Controllers {
         public abstract void SelectSlot(bool select);
         public virtual bool ContainsScreenPoint(Vector2 screenPoint, Camera eventCamera) {
             return RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPoint, eventCamera);
+        }
+        protected void InvokeOnItemEnded(SlotControllerBase slotController) {
+            OnItemEnded?.Invoke(slotController);
         }
 
         // Centraliza a desinscrição do evento do model. Evita assinatura duplicada
