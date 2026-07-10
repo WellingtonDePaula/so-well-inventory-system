@@ -54,7 +54,7 @@ namespace Wellz.Inventory.Core.Controllers {
 
         public abstract bool SwapItem(ItemData item);
 
-        public abstract bool SwapSlot(ISlotController slot);
+        public abstract bool SwapSlot(SlotControllerBase slot);
 
         public abstract void Setup(ItemData item = null, int quantity = 0);
         protected abstract void HandleModelChanged(int quantity);

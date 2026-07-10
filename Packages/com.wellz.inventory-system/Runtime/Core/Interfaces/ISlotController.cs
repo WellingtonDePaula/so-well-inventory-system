@@ -1,4 +1,5 @@
 using UnityEngine;
+using Wellz.Inventory.Core.Controllers;
 using Wellz.Inventory.Items;
 
 namespace Wellz.Inventory.Core.Interfaces {
@@ -6,7 +7,7 @@ namespace Wellz.Inventory.Core.Interfaces {
         Vector2Int GridPos { get; set; }
 
         void CreateSlot(Vector2Int gridPos);
-        bool SwapSlot(ISlotController slot);
+        bool SwapSlot(SlotControllerBase slot);
         bool SwapItem(ItemData item);
         int AddItem(ItemData item, int quantity = 1);
         int RemoveItem(ItemData item, int quantity = 1);

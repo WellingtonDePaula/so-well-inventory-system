@@ -24,6 +24,7 @@ namespace Wellz.Inventory.Core.Controllers {
         // Propriedades para acesso controlado externo
 
         // Campos privados para o estado interno da classe
+        // Trocar de hover para para focused
         protected SlotControllerBase currentHoverSlot = null;
         protected SlotControllerBase currentSelectedSlot = null;
         protected GenericGrid<SlotControllerBase> inventoryGrid;

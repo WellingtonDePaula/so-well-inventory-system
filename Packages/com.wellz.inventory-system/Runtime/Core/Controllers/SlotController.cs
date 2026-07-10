@@ -47,7 +47,7 @@ namespace Wellz.Inventory.Core.Controllers {
             return swapped;
         }
 
-        public override bool SwapSlot(ISlotController slot) {
+        public override bool SwapSlot(SlotControllerBase slot) {
             if (slot == null) {
                 return false;
             }

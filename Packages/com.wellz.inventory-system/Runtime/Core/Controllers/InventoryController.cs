@@ -46,6 +46,10 @@ namespace Wellz.Inventory.Core.Controllers {
             if (currentSelectedSlot == null) { return; }
             //currentSelectedSlot.AddItem(currentSelectedSlot.Item, 1);
             currentSelectedSlot.RemoveItem(currentSelectedSlot.Item, 1);
+
+            //if (currentHoverSlot != currentSelectedSlot) {
+            //    currentSelectedSlot.SwapSlot(currentHoverSlot);
+            //}
         }
         protected override void HandleOnPositionChanged(Vector2 pos) {
             SlotControllerBase slotUnder = FindSlotUnderPoint(pos);
