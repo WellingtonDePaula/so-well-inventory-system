@@ -1,5 +1,20 @@
 {
   "dependencies": {
+    "com.so-well-studios.inventory-system": {
+      "version": "file:com.wellz.inventory-system",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.so-well-studios.utils": "1.0.0"
+      }
+    },
+    "com.so-well-studios.utils": {
+      "version": "https://github.com/WellingtonDePaula/so-well-utils.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "038b10a093d9b2bfde4e0c2adb1453131045ecc7"
+    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 0,
@@ -282,21 +297,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.wellz.inventory-system": {
-      "version": "file:com.wellz.inventory-system",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {
-        "com.wellz.utils": "0.1.0"
-      }
-    },
-    "com.wellz.utils": {
-      "version": "https://github.com/WellingtonDePaula/wellz-utils.git#upm",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "2759fd77d3cb7de34a8c66aff533042c8cd0d433"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

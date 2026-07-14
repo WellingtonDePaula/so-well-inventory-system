@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Wellz.Inventory.Core.Controllers;
-using Wellz.Inventory.Items;
+using SoWell.Inventory.Core.Controllers;
+using SoWell.Inventory.Items;
 
 public class GameManager : MonoBehaviour {
     [SerializeField] private ItemData data;
