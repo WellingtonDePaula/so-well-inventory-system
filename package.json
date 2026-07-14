@@ -1,0 +1,19 @@
+{
+  "name": "com.so-well-studios.inventory-system",
+  "displayName": "SoWell Inventory System",
+  "version": "1.0.0",
+  "unity": "6000.0",
+  "unityRelease": "0f1",
+  "description": "A modular inventory system for Unity 6 projects developed by Wellz.",
+  "dependencies": {
+    "com.so-well-studios.utils": "1.0.0"
+  },
+  "author": {
+    "name": "SoWell Studios",
+    "url": "https://github.com/WellingtonDePaula",
+    "email": "studiossowell@gmail.com"
+  },
+  "changelogUrl": "https://github.com/WellingtonDePaula/so-well-inventory-system",
+  "documentationUrl": "https://github.com/WellingtonDePaula/so-well-inventory-system",
+  "licensesUrl": "https://github.com/WellingtonDePaula/so-well-inventory-system"
+}
