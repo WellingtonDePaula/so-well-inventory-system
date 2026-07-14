@@ -1,6 +1,6 @@
 using UnityEngine;
-using Wellz.Inventory.Core.Controllers;
-using Wellz.Inventory.Items;
+using SoWell.Inventory.Core.Controllers;
+using SoWell.Inventory.Items;
 
 [RequireComponent(typeof(SlotController))]
 public class SetupSlot : MonoBehaviour {
